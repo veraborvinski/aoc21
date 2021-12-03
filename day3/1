@@ -1,0 +1,57 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+int main(){
+
+	 
+    int number;
+    int gamma[12];
+    int epsilon[12];
+    int a,b;
+    for (int i = 0; i < 13; ++i)
+    {
+        FILE *fp = fopen( "input.txt", "r" );
+        if (fp!=NULL) 
+        {
+            char line[14];
+            while(fgets(line, 14, fp)!= NULL)
+            { 
+            
+
+               if(line[i] == 48)
+               {
+                    a++;
+               }
+                else
+                {
+                    b++;
+                }
+            }
+            if(a>b)
+            {
+                gamma[i] = 0;
+                epsilon[i] = 1; 
+            }
+            else
+            {
+                gamma[i] = 1;
+                epsilon[i] = 0; 
+            }
+            a=0;
+            b=0;
+        }
+        fclose (fp); 
+    }
+    printf("\ngamma:");
+    for (int i = 0; i < 13; ++i)
+    {
+        printf("%d", gamma[i]);
+    }
+    printf("\nepsilon:");
+    for (int i = 0; i < 13; ++i)
+    {
+        printf("%d", epsilon[i]);
+    }
+	return 0;
+}

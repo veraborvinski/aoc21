@@ -1,0 +1,135 @@
+#include <stdio.h>
+#include <string.h>
+
+int getNum(int turn);
+
+int main(){
+
+	 FILE *fp = fopen( "input.txt", "r" );
+    int numArray[5][5];
+    int num;
+    int rounds;
+    if (fp!=NULL) 
+    {
+        while ((fscanf(fp, "%d %d %d %d %d", &numArray[0][0], &numArray[0][1], &numArray[0][2], &numArray[0][3], &numArray[0][4])==5))
+        {
+            for (int i = 1; i < 5; ++i)
+            {
+                fscanf(fp, "%d %d %d %d %d", &numArray[i][0], &numArray[i][1], &numArray[i][2], &numArray[i][3], &numArray[i][4]);
+            }
+            for (int i = 0; i < 100; ++i)
+            {
+                num = getNum(i);
+                for (int j = 0; j < 5; ++j)
+                {
+                    for (int l = 0; l < 5; ++l)
+                    {
+                        if (numArray[j][l] == num)
+                        {
+                            numArray[j][l] = 101;
+                        }
+                    }
+                }
+                if (numArray[0][0]+numArray[0][1]+numArray[0][2]+numArray[0][3]+numArray[0][4] ==505)
+                {
+                    rounds = i;
+                    printf("rounds: %d\n", rounds);
+                    i=100;
+                }
+                else if (numArray[1][0]+numArray[1][1]+numArray[1][2]+numArray[1][3]+numArray[1][4] ==505)
+                {
+                    rounds = i;
+                    printf("rounds: %d\n", rounds);
+                    i=100;
+                }
+                else if (numArray[2][0]+numArray[2][1]+numArray[2][2]+numArray[2][3]+numArray[2][4] ==505)
+                {
+                    rounds = i;
+                    printf("rounds: %d\n", rounds);
+                    i=100;
+                }
+                else if (numArray[3][0]+numArray[3][1]+numArray[3][2]+numArray[3][3]+numArray[3][4] ==505)
+                {
+                    rounds = i;
+                    printf("rounds: %d\n", rounds);
+                    i=100;
+                }
+                else if (numArray[4][0]+numArray[4][1]+numArray[4][2]+numArray[4][3]+numArray[4][4] ==505)
+                {
+                    rounds = i;
+                    printf("rounds: %d\n", rounds);
+                    i=100;
+                }
+                else if (numArray[0][0]+numArray[1][0]+numArray[2][0]+numArray[3][0]+numArray[4][0] ==505)
+                {
+                    rounds = i;
+                    printf("rounds: %d\n", rounds);
+                    i=100;
+                }
+                else if (numArray[0][1]+numArray[1][1]+numArray[2][1]+numArray[3][1]+numArray[4][1] ==505)
+                {
+                    rounds = i;
+                    printf("rounds: %d\n", rounds);
+                    i=100;
+                }
+                else if (numArray[0][2]+numArray[1][2]+numArray[2][2]+numArray[3][2]+numArray[4][2] ==505)
+                {
+                    rounds = i;
+                    printf("rounds: %d\n", rounds);
+                    i=100;
+                }
+                else if (numArray[0][3]+numArray[1][3]+numArray[2][3]+numArray[3][3]+numArray[4][3] ==505)
+                {
+                    rounds = i;
+                    printf("rounds: %d\n", rounds);
+                    i=100;
+                }
+                else if (numArray[0][4]+numArray[1][4]+numArray[2][4]+numArray[3][4]+numArray[4][4] ==505)
+                {
+                    rounds = i;
+                    printf("rounds: %d\n", rounds);
+                    i=100;
+                }
+                else if (numArray[0][0]+numArray[1][1]+numArray[2][2]+numArray[3][3]+numArray[4][4] ==505)
+                {
+                    rounds = i;
+                    printf("rounds: %d\n", rounds);
+                    i=100;
+                }
+                else if (numArray[0][4]+numArray[1][3]+numArray[2][2]+numArray[3][1]+numArray[4][0] ==505)
+                {
+                    rounds = i;
+                    printf("rounds: %d\n", rounds);
+                    i=100;
+                }
+            }
+            for (int i = 0; i < 5; ++i)
+            {
+                printf("\n");
+                for (int j = 0; j < 5; ++j)
+                {
+                    printf("%d ", numArray[i][j]);
+                }
+            }
+            printf("\n");
+        }
+        
+        fclose (fp);
+    }
+	return 0;
+}
+
+int getNum(int turn){
+    FILE *fp = fopen( "input2.txt", "r" );
+    int number;
+    if (fp!=NULL) 
+    {
+        for (int i = 0; i < turn; ++i)
+        {
+            fscanf(fp, "%d, ", &number);
+        }
+        
+        fclose (fp);
+    }
+    return number;
+}

@@ -1,0 +1,101 @@
+#include <stdio.h>
+#include <string.h>
+
+int main(){
+
+	 FILE *fp = fopen( "input.txt", "r" );
+    int numArray[1000][1000];
+    for (int i = 0; i < 1000; ++i)
+    {
+        for (int j = 0; j < 1000; ++j)
+        {
+            numArray[i][j] = 0;
+        }
+    }
+    int x1,y1,x2,y2,count;
+    if (fp!=NULL) 
+    {
+        while ((fscanf(fp, "%d,%d -> %d,%d", &x1, &y1, &x2, &y2)==4))
+        {
+            if(x1==x2)
+            {
+                if(y1<y2)
+                {
+                   for (int i = y1; i <= y2; ++i)
+                   {
+                       numArray[x1][i]++;
+                   }
+                }
+                else if(y2<y1)
+                {
+                    for (int i = y2; i <= y1; ++i)
+                   {
+                       numArray[x1][i]++;
+                   }
+                }
+            } 
+            else if(y1 == y2)
+            {
+                if(x1<x2)
+                {
+                   for (int i = x1; i <= x2; ++i)
+                   {
+                       numArray[i][y1]++;
+                   }
+                }
+                else if(x2<x1)
+                {
+                    for (int i = x2; i <= x1; ++i)
+                   {
+                       numArray[i][y1]++;
+                   }
+                }
+            }
+            else
+            {
+            int xup;
+            int yup;
+            int index;
+                if (x2>x1)
+                {
+                    xup = 1;
+                    index = x2-x1;
+                }
+                else
+                {
+                    xup = -1;
+                    index = x1-x2;
+                }
+
+                if (y2>y1)
+                {
+                    yup = 1;
+                }
+                else
+                {
+                    yup = -1;
+                }
+                for (int i = 0; i <= index; i++) {
+                    numArray[y1][x1]++;
+                    x1 += xup;
+                    y1 += yup;
+                }
+            
+            }
+        }
+        for (int i = 0; i < 1000; ++i)
+        {
+            for (int j = 0; j < 1000; ++j)
+            {
+                if(numArray[i][j] > 1)
+                {
+                    count++;
+                }
+            }
+        }
+        printf("%d\n", count-1);
+        
+        fclose (fp);
+    }
+	return 0;
+}
